@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知っておきたい！柴犬のコト</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP&family=Shippori+Mincho&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="./index.html" class="header-logo">
+                <img src="../../DogMatch_Picture/DM_logo.png" alt="DogMatch-logo">
+            </a>
+            <button class="menu-button"></button>
+            <!-- ボタンの説明的なの欲しい（肉球がメニューボタンだと分かりにくいから -->
+            <div class="header-site-menu">
+                <n class="site-menu">
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./about.html">About</a></li>
+                        <li><a href="./care.html">Care</a></li>
+                        <li><a href="./life.html">Life</a></li>
+                    </ul>
+                </n>
+            </div>
+        </div>
+    </header>
+    <main>
+
+    </main>
+    <footer>
+        <div class="site-menu">
+            <nav class="base-menu">
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./care.html">Care</a></li>
+                    <li><a href="./life.html">Life</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="text-center">
+            <div class="base-tel">
+                <p>TEL 080-1111-1111</p>
+            </div>
+            <div class="base-time">
+                <p>
+                    営業時間：24時間
+                </p>
+                <p>
+                    電話対応のみ：9時〜20時
+                </p>
+            </div>
+            <p class="copyright"><small>&copy;2026 ShibaDog</small></p>
+            <p class="company">株式会社 柴犬をまるっと</p>
+        </div>
+    </footer>
+    <script>
+        // 動作したいものを見つける
+        const menuButton = document.querySelector('.menu-button');
+        const headerSiteMenu = document.querySelector('.header-site-menu');
+        // 入力されるまで待つ
+        menuButton.addEventListener('click', function () {
+            headerSiteMenu.classList.toggle('show');//押すと表示が切り替わり、なければ出し、出されていれば引っ込める。
+        });
+    </script>
+</body>
+
+</html>

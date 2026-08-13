@@ -1,0 +1,146 @@
+@charset "utf-8";
+
+body {
+    background-image: url(../../DogMatch_Picture/about.png);
+}
+
+.main {
+    text-align: left;
+    margin: 100px 100px 100px;
+    background-color: #fdeff276;
+    padding: 10px 70px 10px;
+}
+
+.title {
+    background-color: #b6719e32;
+}
+
+.personality {
+    margin: 100px auto 50px;
+    font-size: 25px;
+    text-align: center;
+    color: #6e3c3a;
+}
+
+.personality::after,
+.example h3::after {
+    content: '';
+    /*　これが線のブロック本体*/
+    display: block;
+    width: 40px;
+    height: 3px;
+    margin: 20px auto 0;
+    background-color: #6e35327e;
+}
+
+.text-first p {
+    line-height: 3;
+    font-size: 20px;
+    text-align: center;
+}
+
+.example h3 {
+    margin: 50px auto 30px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 25px;
+    color: #7d5136;
+}
+
+.example h3::after {
+    margin-left: 0;
+}
+
+.example p {
+    line-height: 2.5;
+    font-size: 20px;
+}
+
+.example-three h4 {
+    font-weight: bold;
+    margin-top: 50px;
+    font-size: 20px;
+    color: #3d281a;
+}
+
+.example-three p {
+    line-height: 2.8;
+    font-size: 18px;
+    margin-bottom: 50px;
+}
+
+/* 豆知識の犬の毛についてで使えそう（写真） */
+.example-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 90%;
+    margin: 40px auto 50px;
+    display: grid;
+    /*グリットに並べる*/
+    grid-template-columns: repeat(auto-fit, 300px);
+    /* itemの横を500pxに固定。auto-fitで画面が小さくなったら折り返してくれる */
+    column-gap: 50px;
+    /*横の隙間*/
+    row-gap: 50px;
+    /*縦の隙間*/
+    justify-content: center;
+    /*常に中心揃えに*/
+}
+
+.example-list li {
+    position: relative;
+    background-color: #e9efe5;
+    border-radius: 8px;
+}
+
+img {
+    border-radius: 5px;
+}
+
+.example-list li p {
+    text-align: center;
+}
+
+.did-you-know h3 {
+    text-align: center;
+    color: #5b3c27;
+    font-size: 25px;
+}
+
+.did-you-know p {
+    margin: 0 100px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 2;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+@media (max-width:900px) {
+    .main {
+        margin: 100px 20px 0;
+        padding: 10px 20px 10px;
+    }
+
+    .text-first {
+        font-size: 15px;
+        margin: 0 20px;
+    }
+
+    .example p {
+        font-size: 17px;
+    }
+
+    .example-three p {
+        font-size: 16px;
+    }
+
+    .did-you-know p {
+        margin: 0 20px;
+        font-size: 16px;
+        text-align: left;
+    }
+}

@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+body {
+    background-image: url(../../DogMatch_Picture/life.png);
+}
+
+.title {
+    background-color: #f2a0a132;
+}

@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+body {
+    background-image: url(../../DogMatch_Picture/care.png);
+}
+
+.title {
+    background-color: #38b48b32;
+    width: 100%;
+}
+
+.main {
+    margin: 0 50px;
+}
+
+@media (max-width:900px) {}

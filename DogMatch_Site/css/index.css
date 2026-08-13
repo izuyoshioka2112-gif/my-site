@@ -1,0 +1,242 @@
+@charset "utf-8";
+
+#about-first,
+#point-first,
+#life-first {
+    /* 目次でここに飛んできたときだけ、上に80pxの隙間を開ける（数値は自由に調整してください） */
+    scroll-margin-top: 100px;
+}
+
+.about:hover,
+.point:hover,
+.life:hover {
+    color: #a05757;
+}
+
+body {
+    background-image: url(../../DogMatch_Picture/background.png);
+}
+
+/* タイトル部分 */
+
+.title {
+    font-family: "Shippori Mincho", serif;
+    width: 100%;
+    background-color: #c8983230;
+    /* height: 350px; */
+    height: 80vh;
+    /*画面の?%の大きさに設定*/
+    /* flex-direction: column;
+    display: flex;
+    align-items:center; */
+    margin-top: 0;
+    padding-top: 150px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 0 5px 10px #d67575f6;
+    /*横　縦　ぼかしの大きさ　色*/
+    padding-bottom: 50px;
+
+}
+
+.title h1 {
+    margin-top: 90px;
+    margin-bottom: 100px;
+    font-size: 100px;
+}
+
+/* 前書き */
+.first-message,
+.brief-explanation {
+    /*各項目の説明文も同じcssを適応中*/
+    padding: 30px 30px 0;
+    text-align: center;
+    line-height: 3;
+}
+
+.first-message-big {
+    display: block;
+}
+
+.first-message-mini {
+    display: none;
+}
+
+/* 前書きここまで */
+
+/* 各項目説明のタイトル部分設定 */
+.recommended {
+    font-size: 25px;
+    margin: 100px auto 0;
+    text-align: center;
+    font-weight: bold;
+    color: #5d312e;
+}
+
+.recommended:after {
+    content: '';
+    /*　これが線のブロック本体*/
+    display: block;
+    width: 40px;
+    height: 3px;
+    margin: 20px auto 0;
+    background-color: #8046428d;
+}
+
+/* ここがボタン設定 */
+.link-button {
+    background-color: #f4789362;
+    text-align: center;
+    margin: 20px auto 100px;
+    /*　上、左右、下*/
+    display: block;
+    width: 180px;
+    border-radius: 30px;
+    /*角を丸くするもので、4つ角全て各自変更できる*/
+    font-size: 15px;
+    padding: 13px;
+}
+
+/* ボタン、カーソルを当てたら色が変わるコード */
+.link-button:hover {
+    background-color: #fc9fb362;
+    color: #545454;
+}
+
+/* 説明文 */
+.brief-explanation {
+    text-align: left;
+    padding: 0px 20px 0;
+    font-size: 20px;
+}
+
+h3 {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+/* おすすめ欄のスクロール部分設定 */
+.about-first {
+    display: flex;
+    max-width: 950px;
+    margin: 10px auto 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /*　横並びにする　*/
+}
+
+.about-pc {
+    max-width: 400px;
+}
+
+/* 各項目設定ここまで */
+
+/* ここから目次設定 */
+.table-of-contents {
+    position: relative;
+    /*基準の枠を作る*/
+    background-color: #efab9365;
+    color: #6e3c3a;
+    height: 100%;
+    max-width: 700px;
+    width: 80%;
+    margin: 50px auto 50px;
+    padding: 10px 100px 20px;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.table-of-contents a {
+    width: fit-content;
+    /*文字の長さ分だけ↓*/
+    border-bottom: 2px solid #6e35327e;
+    /*２pxの太さで真っ直ぐこの色でひく*/
+}
+
+.table-of-contents img {
+    position: absolute;
+    /*自由に配置できるように*/
+    bottom: 0;
+    right: 10px;
+    width: 100%;
+    max-width: 700px;
+    z-index: -1;
+}
+
+.text a {
+    color: #96514d;
+    text-shadow: 0 0 5px #ffffff50;
+    font-weight: bold;
+    display: flex;
+    text-align: left;
+    line-height: 3;
+    width: fit-content;
+    /*文字の長さ分当たり判定設定*/
+}
+
+.text a:hover {
+    color: #663735;
+}
+
+@media (max-width:900px) {
+
+    /* 前書き */
+    .first-message-big {
+        display: none;
+    }
+
+    .first-message-mini {
+        display: block;
+    }
+
+    /* 左右に隙間を開けたいクラスを追加していく */
+    .first-message {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+    /* 前書きここまで */
+
+    /* title */
+    .title {
+        height: 90vh;
+        padding-top: 100px;
+        padding-bottom: 40px;
+        text-align: center;
+        font-size: 35px;
+        padding-bottom: 0;
+    }
+
+    .title h1 {
+        margin-top: 150px;
+        padding-bottom: 30px;
+        font-size: 80px;
+    }
+
+    .title p {
+        font-size: 18px;
+    }
+
+    /* titleここまで */
+    /* 各項目内容設定 */
+    .about-pc {
+        display: none;
+    }
+
+    .brief-explanation {
+        font-size: 16px;
+    }
+
+    /* ここまで */
+    /* 目次設定 */
+    .table-of-contents {
+        padding: 10px 30px;
+        width: 80%;
+    }
+
+    .table-of-contents a {
+        border-bottom: none;
+    }
+}
