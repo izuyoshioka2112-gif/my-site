@@ -20,7 +20,8 @@ body {
     margin-bottom: 50px;
 }
 
-.care-first h3::after {
+.care-first h3::after,
+.details h2::after {
     content: '';
     /* これが線のブロック本体 */
     display: block;
@@ -51,7 +52,8 @@ body {
     color: #6e3c3a;
 }
 
-.care-first h4 {
+.care-first h4,
+.details h4 {
     font-weight: bold;
     font-size: 20px;
 }
@@ -61,13 +63,15 @@ body {
     line-height: 2;
 }
 
-.care {
+.care,
+.content {
     display: flex;
     align-items: flex-start;
     margin-top: 30px;
 }
 
-.care img {
+.care img,
+.content img {
     display: block;
     padding-top: 80px;
     padding-left: 30px;
@@ -102,6 +106,29 @@ body {
     color: #545454;
 }
 
+/* ここからcare2（careの最初画面） */
+.details {
+    margin: 20px 80px;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.details h2 {
+    color: #693635;
+    text-align: center;
+}
+
+.details h2::after {
+    align-items: center;
+    margin: 20px auto;
+}
+
+.details p {
+    font-size: 18px;
+    line-height: 2;
+}
+
+
 @media (max-width:900px) {
     .text-first p {
         font-size: 18px;
@@ -123,7 +150,8 @@ body {
         margin: 0;
     }
 
-    .care img {
+    .care img,
+    .content img {
         display: none;
     }
 
@@ -133,5 +161,10 @@ body {
 
     .care-first p {
         font-size: 16px;
+    }
+
+    /* care2 */
+    .details {
+        margin: 0 20px;
     }
 }
