@@ -9,6 +9,32 @@ body {
     width: 100%;
 }
 
+.big {
+    display: block;
+}
+
+.small {
+    display: none;
+}
+
+.button a {
+    display: block;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    padding: 50px 48px;
+    background-color: #f570dd79;
+    border: none;
+    border-radius: 100px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.button a:hover {
+    background-color: #c95cb565;
+}
+
 .main {
     margin: 0 50px;
 }
@@ -130,6 +156,15 @@ body {
 
 
 @media (max-width:900px) {
+    .big {
+        display: none;
+    }
+
+    .small {
+        display: block;
+        line-height: 2;
+    }
+
     .text-first p {
         font-size: 18px;
         margin: 30px 20px;
@@ -166,5 +201,12 @@ body {
     /* care2 */
     .details {
         margin: 0 20px;
+    }
+
+    .button a {
+        font-size: 15px;
+        padding: 30px 28px;
+        right: 30px;
+        bottom: 30px;
     }
 }
