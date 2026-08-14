@@ -9,6 +9,32 @@ body {
     width: 100%;
 }
 
+.big {
+    display: block;
+}
+
+.small {
+    display: none;
+}
+
+.button a {
+    display: block;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    padding: 50px 48px;
+    background-color: #f570dd79;
+    border: none;
+    border-radius: 100px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.button a:hover {
+    background-color: #c95cb565;
+}
+
 .main {
     margin: 0 50px;
 }
@@ -20,7 +46,8 @@ body {
     margin-bottom: 50px;
 }
 
-.care-first h3::after {
+.care-first h3::after,
+.details h2::after {
     content: '';
     /* これが線のブロック本体 */
     display: block;
@@ -51,7 +78,8 @@ body {
     color: #6e3c3a;
 }
 
-.care-first h4 {
+.care-first h4,
+.details h4 {
     font-weight: bold;
     font-size: 20px;
 }
@@ -61,13 +89,15 @@ body {
     line-height: 2;
 }
 
-.care {
+.care,
+.content {
     display: flex;
     align-items: flex-start;
     margin-top: 30px;
 }
 
-.care img {
+.care img,
+.content img {
     display: block;
     padding-top: 80px;
     padding-left: 30px;
@@ -82,7 +112,59 @@ body {
     line-height: 2.5;
 }
 
+/* ここがボタン設定 */
+.link-button {
+    background-color: #78f49b62;
+    text-align: center;
+    margin: 30px auto 20px;
+    /*　上、左右、下*/
+    display: block;
+    width: 180px;
+    border-radius: 30px;
+    /*角を丸くするもので、4つ角全て各自変更できる*/
+    font-size: 15px;
+    padding: 13px;
+}
+
+/* ボタン、カーソルを当てたら色が変わるコード */
+.link-button:hover {
+    background-color: #7cb99a62;
+    color: #545454;
+}
+
+/* ここからcare2（careの最初画面） */
+.details {
+    margin: 20px 80px;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.details h2 {
+    color: #693635;
+    text-align: center;
+}
+
+.details h2::after {
+    align-items: center;
+    margin: 20px auto;
+}
+
+.details p {
+    font-size: 18px;
+    line-height: 2;
+}
+
+
 @media (max-width:900px) {
+    .big {
+        display: none;
+    }
+
+    .small {
+        display: block;
+        line-height: 2;
+    }
+
     .text-first p {
         font-size: 18px;
         margin: 30px 20px;
@@ -103,7 +185,8 @@ body {
         margin: 0;
     }
 
-    .care img {
+    .care img,
+    .content img {
         display: none;
     }
 
@@ -113,5 +196,17 @@ body {
 
     .care-first p {
         font-size: 16px;
+    }
+
+    /* care2 */
+    .details {
+        margin: 0 20px;
+    }
+
+    .button a {
+        font-size: 15px;
+        padding: 30px 28px;
+        right: 30px;
+        bottom: 30px;
     }
 }
