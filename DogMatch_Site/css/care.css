@@ -91,17 +91,18 @@ body {
 
 .care,
 .content {
-    display: flex;
+    overflow: hidden;
     align-items: flex-start;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .care img,
 .content img {
+    float: right;
     display: block;
-    padding-top: 80px;
-    padding-left: 30px;
-    width: 100%px;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 100%;
     max-width: 300px;
 }
 

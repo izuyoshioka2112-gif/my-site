@@ -7,3 +7,131 @@ body {
 .title {
     background-color: #f2a0a132;
 }
+
+.main {
+    margin: 30px 130px;
+}
+
+h2 {
+    margin: 30px auto 0;
+    text-align: center;
+    color: #5d312e;
+    font-size: 25px;
+}
+
+h2::after {
+    content: '';
+    /*　これが線のブロック本体*/
+    display: block;
+    width: 40px;
+    height: 3px;
+    margin: 20px auto 0;
+    background-color: #8046428d;
+}
+
+.advantage {
+    margin: 100px auto;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
+    line-height: 2;
+}
+
+.ep-all {
+    background-color: #ffffff6f;
+    border-radius: 8px;
+    padding: 30px 70px;
+}
+
+.ep p {
+    text-align: center;
+}
+
+.ep-all h3 {
+    font-size: 23px;
+    color: #5d312e;
+    margin-top: 70px;
+}
+
+.ep-all p {
+    font-size: 20px;
+    line-height: 2;
+}
+
+.distance {
+    overflow: hidden;
+}
+
+.distance img {
+    float: right;
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+/* 豆知識 */
+.did-you-know {
+    margin: 100px 150px;
+}
+
+.did-you-know h3 {
+    margin-top: 50px;
+    color: #5b3c27;
+    font-size: 25px;
+}
+
+.did-you-know p {
+    font-size: 20px;
+    line-height: 2;
+}
+
+.img {
+    overflow: hidden;
+}
+
+.img img {
+    float: right;
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    margin: 0 30px;
+}
+
+@media (max-width:900px) {
+
+    .distance img,
+    .img img {
+        display: none;
+    }
+
+    .advantage {
+        margin: 0;
+        padding: 10px;
+    }
+
+    .advantage p {
+        font-size: 17px;
+    }
+
+    .main {
+        margin: 30px 20px;
+    }
+
+    .ep-all {
+        padding: 20px;
+    }
+
+    .ep-all p {
+        font-size: 18px;
+    }
+
+    .did-you-know {
+        margin: 30px;
+    }
+
+    .did-you-know p {
+        font-size: 17px;
+    }
+}
