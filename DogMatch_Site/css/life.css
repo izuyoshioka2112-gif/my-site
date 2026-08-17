@@ -30,11 +30,9 @@ h2::after {
 }
 
 .advantage {
-    margin: 100px 70px 150px;
-    padding: 30px;
+    margin: 100px auto;
     font-size: 20px;
     text-align: center;
-    background-color: #fef4f47d;
     border-radius: 8px;
     line-height: 2;
 }
@@ -42,13 +40,11 @@ h2::after {
 .ep-all {
     background-color: #ffffff6f;
     border-radius: 8px;
-    padding: 70px;
+    padding: 30px 70px;
 }
 
 .ep p {
-    font-size: 20px;
     text-align: center;
-    line-height: 2;
 }
 
 .ep-all h3 {
@@ -58,7 +54,7 @@ h2::after {
 }
 
 .ep-all p {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 2;
 }
 
@@ -73,4 +69,69 @@ h2::after {
     width: 100%;
     margin-top: 20px;
     margin-left: 10px;
+}
+
+/* 豆知識 */
+.did-you-know {
+    margin: 100px 150px;
+}
+
+.did-you-know h3 {
+    margin-top: 50px;
+    color: #5b3c27;
+    font-size: 25px;
+}
+
+.did-you-know p {
+    font-size: 20px;
+    line-height: 2;
+}
+
+.img {
+    overflow: hidden;
+}
+
+.img img {
+    float: right;
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    margin: 0 30px;
+}
+
+@media (max-width:900px) {
+
+    .distance img,
+    .img img {
+        display: none;
+    }
+
+    .advantage {
+        margin: 0;
+        padding: 10px;
+    }
+
+    .advantage p {
+        font-size: 17px;
+    }
+
+    .main {
+        margin: 30px 20px;
+    }
+
+    .ep-all {
+        padding: 20px;
+    }
+
+    .ep-all p {
+        font-size: 18px;
+    }
+
+    .did-you-know {
+        margin: 30px;
+    }
+
+    .did-you-know p {
+        font-size: 17px;
+    }
 }
