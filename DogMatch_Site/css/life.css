@@ -7,3 +7,70 @@ body {
 .title {
     background-color: #f2a0a132;
 }
+
+.main {
+    margin: 30px 130px;
+}
+
+h2 {
+    margin: 30px auto 0;
+    text-align: center;
+    color: #5d312e;
+    font-size: 25px;
+}
+
+h2::after {
+    content: '';
+    /*　これが線のブロック本体*/
+    display: block;
+    width: 40px;
+    height: 3px;
+    margin: 20px auto 0;
+    background-color: #8046428d;
+}
+
+.advantage {
+    margin: 100px 70px 150px;
+    padding: 30px;
+    font-size: 20px;
+    text-align: center;
+    background-color: #fef4f47d;
+    border-radius: 8px;
+    line-height: 2;
+}
+
+.ep-all {
+    background-color: #ffffff6f;
+    border-radius: 8px;
+    padding: 70px;
+}
+
+.ep p {
+    font-size: 20px;
+    text-align: center;
+    line-height: 2;
+}
+
+.ep-all h3 {
+    font-size: 23px;
+    color: #5d312e;
+    margin-top: 70px;
+}
+
+.ep-all p {
+    font-size: 18px;
+    line-height: 2;
+}
+
+.distance {
+    overflow: hidden;
+}
+
+.distance img {
+    float: right;
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 10px;
+}
