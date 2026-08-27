@@ -22,9 +22,9 @@ body {
 .title {
     font-family: "Shippori Mincho", serif;
     width: 100%;
-    background-color: #c8983230;
+    background-color: #c6ab7230;
     /* height: 350px; */
-    height: 80vh;
+    height: 40vh;
     /*画面の?%の大きさに設定*/
     /* flex-direction: column;
     display: flex;
@@ -33,7 +33,7 @@ body {
     padding-top: 150px;
     font-weight: bold;
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
     text-shadow: 0 5px 10px #d67575f6;
     /*横　縦　ぼかしの大きさ　色*/
     padding-bottom: 50px;
@@ -41,9 +41,9 @@ body {
 }
 
 .title h1 {
-    margin-top: 90px;
+    margin-top: 10px;
     margin-bottom: 100px;
-    font-size: 100px;
+    font-size: 60px;
 }
 
 /* 前書き */
@@ -203,16 +203,16 @@ h3 {
     .title {
         height: 90vh;
         padding-top: 100px;
-        padding-bottom: 40px;
+        padding-bottom: 30px;
         text-align: center;
         font-size: 35px;
         padding-bottom: 0;
     }
 
     .title h1 {
-        margin-top: 150px;
-        padding-bottom: 30px;
-        font-size: 80px;
+        margin-top: 180px;
+        padding-bottom: 0;
+        font-size: 50px;
     }
 
     .title p {
