@@ -149,6 +149,7 @@
         // ページ読み込み時:白から元に戻す
 
         // 画面のフェード　page-transition
+        //1
         window.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('page-transition');
             requestAnimationFrame(() => {
@@ -156,19 +157,24 @@
             });
         });
         // リンククリック時:白くしてから遷移
+        //2（役割はその場でページに飛ぶのをとめ、自分で設定した演習、時間を決めて移動させてる
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function (e) {
-                // 外部リンクや同ページ内リンクは除外したい場合はここで判定
-                e.preventDefault();
                 const href = this.getAttribute('href');
+                // hrefにクリックされたaタグのhref属性の値を読み込んでいる
+                if (!href || href.startsWith('#')) {
+                    return; // ここで処理を抜ける
+                }
+                e.preventDefault();//リンクを押した瞬間にすぐページが切り替わるのを止める。
                 const overlay = document.getElementById('page-transition');
-                overlay.classList.add('active');
-
+                overlay.classList.add('active');//→ 白いオーバーレイを表示する(すでに白い状態だから見た目上の変化はないけど、「今から白くなるぞ」という状態にする)
+                //3
                 setTimeout(() => {
                     window.location.href = href;
                 }, 1000); // CSSのtransition時間と合わせる
             });
         });
+        //最初から白くしておく（html)→リンクリックで2が動き、3で1秒まつ→待ったらページの読み込み→そのページも初めから白いため、1が動き、フェードアウト
     </script>
 </body>
 
