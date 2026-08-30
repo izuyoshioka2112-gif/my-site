@@ -10,6 +10,9 @@ html {
 
 /* これだけでゆっくり動いてくれる */
 
+* {
+    cursor: url('../../DogMatch_Picture/cursor.png') 16 16, auto;
+}
 
 body {
     font-family: "IBM Plex Sans JP", sans-serif;
@@ -22,6 +25,8 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    /* カーソル */
+    cursor: url('../../DogMatch_Picture/cursor.png') 16 16, auto;
 }
 
 /* ↓各項目のtitle部分設定 */
@@ -193,6 +198,27 @@ JS	いつそのルールを発動させるか(クラスの付け外しのタイ�
 #page-transition.active {
     opacity: 1;
     pointer-events: all;
+}
+
+/* カーソル */
+.paw-trail {
+    position: absolute;
+    pointer-events: none;
+    /*この要素はクリック judged対象から外す*/
+    /* 跡自体はクリックできないようにする */
+    opacity: 0.7;
+    animation: paw-fade 0.8s forwards;
+    /* 徐々に消えるように */
+    transition: none;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes paw-fade {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+        /* 位置は変わらず、大きさと透明度だけ変化 */
+    }
 }
 
 @media (max-width:900px) {
