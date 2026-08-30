@@ -20,6 +20,7 @@ body {
     font-size: 25px;
     text-align: center;
     color: #6e3c3a;
+    font-family: "Shippori Mincho", serif;
 }
 
 .personality::after,
@@ -37,6 +38,7 @@ body {
     line-height: 3;
     font-size: 20px;
     text-align: center;
+    font-family: "Shippori Mincho", serif;
 }
 
 .example h3 {
@@ -96,12 +98,14 @@ body {
 
 .example-list li p {
     text-align: center;
+    font-family: "Shippori Mincho", serif;
 }
 
 .did-you-know h3 {
     text-align: center;
     color: #5b3c27;
     font-size: 25px;
+    font-family: "Shippori Mincho", serif;
 }
 
 .did-you-know p {

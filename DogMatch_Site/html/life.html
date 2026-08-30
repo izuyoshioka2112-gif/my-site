@@ -14,10 +14,9 @@
 </head>
 
 <body>
+    <div id="page-transition" class="active"></div>
     <header class="header">
-
         <div class="header-inner">
-
             <a href="./index.html" class="header-logo">
                 <img src="../../DogMatch_Picture/DM_logo.png" alt="DogMatch-logo">
             </a>
@@ -142,6 +141,30 @@
             });
         });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // 画面のフェード　page-transition
+        window.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('page-transition');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    overlay.classList.remove('active'); // ここでフェードアウト開始
+                });
+            });
+        });
+        // リンククリック時:白くしてから遷移
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                // 外部リンクや同ページ内リンクは除外したい場合はここで判定
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const overlay = document.getElementById('page-transition');
+                overlay.classList.add('active');
+
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 600); // CSSのtransition時間と合わせる
+            });
+        });
     </script>
 </body>
 

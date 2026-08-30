@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div id="page-transition" class="active"></div>
     <header class="header">
         <div class="header-inner">
             <a href="./index.html" class="header-logo">
@@ -48,14 +49,14 @@
                     <img class="fade-in" src="../../DogMatch_Picture/./wait.jpeg" alt="お座り柴犬">
 
                     <div class="_">
-                        <h4 class="fade-in">「マテ」と「お座り」</h4>
+                        <h5 class="fade-in">「マテ」と「お座り」</h5>
                         <p class="fade-in">
                             どちらもご飯をあげるときに行うのが一番簡単です。<br>「お座り」と言い聞かせてから座らせ、自分からお座りの体制にならなくてもお座りした時点でしっかり褒めましょう。<br>「マテ」もご飯を手で覆い、マテと言い聞かせながら<strong>止まる</strong>という行動を覚えさせましょう。少しでもできたら全力で褒めてあげてください。<br>すると、「その行動をするだけで褒められる！」とルンルンになり、いつしかできるようになります。<br>できるようになったら、次はお散歩の止まる時にできるように練習していきましょう。
                         </p>
                     </div>
                 </div>
 
-                <h4 class="fade-in">「ハウス」と「トイレ」</h4>
+                <h5 class="fade-in">「ハウス」と「トイレ」</h5>
                 <p class="fade-in">
                     この２つはそこまで難しくないですが、広い心を持たないといけません。<br>ハウスもトイレもとにかく犬の前で<strong>「これはハウス！」「ここがトイレ！」</strong>と訴え続けてください。初めの時は、ハウスといっても行動と結び付かず入らなかったり、トイレの場所がよくわからずトイレ以外でしてしまうことが多々あります。してしまったものはしょうがないで済ませるしかありませんが、しっかり叱りましょう。<br>
                 </p>
@@ -75,7 +76,7 @@
                     なぜ舐められないことが大切なのか、それは柴犬が人間より立場が上と認識することを防ぐためです。<br>もしそう認識してしまうと、噛みついていうことを聞かなくなり、凶暴化ししまう可能性があるからです。
                 </p>
                 <p class="fade-in">叱るという行為は、決して脅すためにあるのではなく、<strong>柴犬と仲良く、安心して生活する上で欠かせない要素です。</strong></p>
-                <h4 class="fade-in" style="margin-top: 50px;">叱るとは？</h4>
+                <h5 class="fade-in" style="margin-top: 50px;">叱るとは？</h5>
                 <p class="fade-in">叱る場面自体、ここだ！という指標はないです。ただ、叱り方にはいくつかポイントがあります。</p>
                 <p class="fade-in"><strong>①
                         叱るのは30以内</strong><br>犬は今起こった現状を覚えているのは約30分と言われています。そのためネチネチずっと怒るのはやめて、その場その瞬間で叱ることが犬も理解しやすいため良いです。<br>しかし、叱る瞬間、現場に出会う確率の方が低いと思います。<br>もし、30分以上経った時見つけた場合は、やってしまった現場の隣で犬に向かって「だめ」など否定の言葉を言いましょう。それでも聞かない場合は状況にもよりますが、痛くない程度に鼻を掴むと「ダメ」と理解しやすい傾向がが経験上があるのでおすすめです。
@@ -131,6 +132,30 @@
             });
         });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // 画面のフェード　page-transition
+        window.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('page-transition');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    overlay.classList.remove('active'); // ここでフェードアウト開始
+                });
+            });
+        });
+        // リンククリック時:白くしてから遷移
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                // 外部リンクや同ページ内リンクは除外したい場合はここで判定
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const overlay = document.getElementById('page-transition');
+                overlay.classList.add('active');
+
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 1000); // CSSのtransition時間と合わせる
+            });
+        });
     </script>
 </body>
 
