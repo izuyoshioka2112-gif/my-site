@@ -35,6 +35,7 @@ h2::after {
     text-align: center;
     border-radius: 8px;
     line-height: 2;
+    font-family: "Shippori Mincho", serif;
 }
 
 .ep-all {
@@ -74,17 +75,20 @@ h2::after {
 /* 豆知識 */
 .did-you-know {
     margin: 100px 150px;
+    font-family: "Shippori Mincho", serif;
 }
 
 .did-you-know h3 {
     margin-top: 50px;
     color: #5b3c27;
     font-size: 25px;
+    font-family: "Shippori Mincho", serif;
 }
 
 .did-you-know p {
     font-size: 20px;
     line-height: 2;
+    font-family: "IBM Plex Sans JP", sans-serif;
 }
 
 .img {

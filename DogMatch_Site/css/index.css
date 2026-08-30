@@ -55,12 +55,12 @@ body {
     line-height: 3;
 }
 
-.first-message-big {
-    display: block;
+.first-message {
+    font-family: "Shippori Mincho", serif;
 }
 
-.first-message-mini {
-    display: none;
+.event {
+    font-size: 18px;
 }
 
 /* 前書きここまで */
@@ -72,6 +72,7 @@ body {
     text-align: center;
     font-weight: bold;
     color: #5d312e;
+    font-family: "Shippori Mincho", serif;
 }
 
 .recommended:after {
@@ -96,6 +97,7 @@ body {
     /*角を丸くするもので、4つ角全て各自変更できる*/
     font-size: 15px;
     padding: 13px;
+    font-family: "Shippori Mincho", serif;
 }
 
 /* ボタン、カーソルを当てたら色が変わるコード */
@@ -116,7 +118,6 @@ h3 {
     margin-left: 20px;
 }
 
-/* おすすめ欄のスクロール部分設定 */
 .about-first {
     display: flex;
     max-width: 950px;
@@ -146,13 +147,7 @@ h3 {
     padding: 10px 100px 20px;
     z-index: 1;
     border-radius: 8px;
-}
-
-.table-of-contents a {
-    width: fit-content;
-    /*文字の長さ分だけ↓*/
-    border-bottom: 2px solid #6e35327e;
-    /*２pxの太さで真っ直ぐこの色でひく*/
+    font-family: "Shippori Mincho", serif;
 }
 
 .table-of-contents img {

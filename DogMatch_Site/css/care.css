@@ -29,6 +29,7 @@ body {
     font-size: 20px;
     color: #fff;
     font-weight: bold;
+    font-family: "Shippori Mincho", serif;
 }
 
 .button a:hover {
@@ -62,6 +63,7 @@ body {
     line-height: 3;
     font-size: 20px;
     text-align: center;
+    font-family: "Shippori Mincho", serif;
 }
 
 /* ここから内容の調整 */
@@ -79,9 +81,14 @@ body {
 }
 
 .care-first h4,
+.care-first h5,
 .details h4 {
     font-weight: bold;
     font-size: 20px;
+}
+
+.care-first h4 {
+    font-family: "Shippori Mincho", serif;
 }
 
 .care-first p {
@@ -125,6 +132,7 @@ body {
     /*角を丸くするもので、4つ角全て各自変更できる*/
     font-size: 15px;
     padding: 13px;
+    font-family: "Shippori Mincho", serif;
 }
 
 /* ボタン、カーソルを当てたら色が変わるコード */
