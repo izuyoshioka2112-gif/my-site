@@ -187,6 +187,9 @@ footer {
     transition: opacity 1s ease;
 }
 
+/* CSS	見た目の変化のルール(何が、どう、何秒で変わるか)
+JS	いつそのルールを発動させるか(クラスの付け外しのタイミング) */
+
 #page-transition.active {
     opacity: 1;
     pointer-events: all;
