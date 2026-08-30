@@ -165,6 +165,27 @@
                 }, 600); // CSSのtransition時間と合わせる
             });
         });
+        // カーソル設定
+        let lastTime = 0;
+        document.addEventListener('mousemove', function (e) {
+            const now = Date.now(); // 今の時刻を取得
+            if (now - lastTime < 150) {//時間設定
+                return; // 前回置いてからまだINTERVALミリ秒経ってなければ何もしない
+            }
+            lastTime = now; // 今回置いた時刻を記録し直す
+            const paw = document.createElement('img');//タグ作成
+            paw.src = '../../DogMatch_Picture/cursor.png';
+            paw.className = 'paw-trail';//cssで見た目を整えるための目印
+            paw.style.left = e.pageX + 'px';
+            paw.style.top = e.pageY + 'px';
+            //マウスが動いたらその地点を記録
+            document.body.appendChild(paw);//実際に追加
+
+            // 一定時間後に消す(残り続けると重くなるため)
+            setTimeout(() => {
+                paw.remove();
+            }, 800);
+        });
     </script>
 </body>
 
