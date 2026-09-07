@@ -99,8 +99,8 @@ body {
 
 /* ボタン、カーソルを当てたら色が変わるコード */
 .link-button:hover {
-    background-color: #fc9fb362;
-    color: #545454;
+    background-color: #fc9fb387;
+    color: #4d4d4d;
 }
 
 /* 説明文 */
