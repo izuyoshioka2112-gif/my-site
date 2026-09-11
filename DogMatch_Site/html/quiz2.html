@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>柴犬奥義クイズ（サンプル）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;800&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f3e9d2;
+            --cream-deep: #ecdcb8;
+            --ink: #3b332a;
+            --terracotta: #c97b63;
+            --terracotta-deep: #a85c46;
+            --gold-line: #c9a86a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Noto Sans JP", sans-serif;
+            color: var(--ink);
+            background: var(--cream);
+            padding: 24px;
+        }
+
+        .quiz-card {
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(180deg, #fbf5e6, var(--cream-deep));
+            border: 1px solid rgba(168, 92, 70, 0.25);
+            border-radius: 6px;
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(74, 66, 56, 0.1);
+        }
+
+        .progress {
+            font-family: "Shippori Mincho", serif;
+            font-size: 0.85rem;
+            color: var(--terracotta-deep);
+            letter-spacing: 0.1em;
+            margin-bottom: 18px;
+        }
+
+        #question-text {
+            font-family: "Shippori Mincho", serif;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin: 0 0 28px;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .choice-btn {
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            background: #fff;
+            border: 1px solid rgba(168, 92, 70, 0.4);
+            border-radius: 30px;
+            color: var(--ink);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s, border-color 0.2s;
+        }
+
+        .choice-btn:hover {
+            background: var(--terracotta);
+            color: #fff;
+            border-color: var(--terracotta);
+            transform: translateY(-1px);
+        }
+
+        .choice-btn.correct {
+            background: #7a8f5c;
+            border-color: #7a8f5c;
+            color: #fff;
+        }
+
+        .choice-btn.wrong {
+            background: #a85c46;
+            border-color: #a85c46;
+            color: #fff;
+        }
+
+        .choice-btn:disabled {
+            cursor: default;
+            transform: none;
+        }
+
+        #result-screen {
+            display: none;
+        }
+
+        #result-screen .score {
+            font-family: "Shippori Mincho", serif;
+            font-size: 2.4rem;
+            color: var(--terracotta-deep);
+            margin: 12px 0;
+        }
+
+        #result-screen .message {
+            font-size: 1.05rem;
+            margin-bottom: 26px;
+            line-height: 1.7;
+        }
+
+        .retry-btn button {
+            padding: 12px 32px;
+            font-family: "Shippori Mincho", serif;
+            font-size: 0.95rem;
+            background: var(--terracotta-deep);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz-card">
+
+        <!-- 出題画面 -->
+        <div id="quiz-screen">
+            <div class="progress" id="progress-text"></div>
+            <p id="question-text"></p>
+            <div class="choices" id="choices-area"></div>
+        </div>
+
+        <!-- 結果画面（最初は隠しておく） -->
+        <div id="result-screen">
+            <div class="progress">結果発表</div>
+            <div class="score" id="score-text"></div>
+            <p class="message" id="message-text"></p>
+            <iframe width="100%" height="400" style="border:0" loading="lazy"
+                src="https://www.google.com/maps?q=動物病院&output=embed">
+            </iframe>
+            <div class="retry-btn">
+                <button onclick="restartQuiz()">もう一度挑戦する</button>
+                <button>ホームに戻る</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ---- 1. 問題データをまとめて管理 ----
+        const questions = [
+            {
+                q: "柴犬の顔立ち、きつね顔ともう一つは？",
+                choices: ["たぬき顔", "パンダ顔", "ねこ顔"],
+                answer: 0
+            },
+            {
+                q: "柴犬のシャンプー、目安の頻度は？",
+                choices: ["毎日", "1〜2ヶ月に1回", "半年に1回"],
+                answer: 1
+            },
+            {
+                q: "日本犬の中で柴犬はどう言われている？",
+                choices: ["唯一の小型犬", "唯一の大型犬", "唯一の長毛種"],
+                answer: 0
+            },
+            {
+                q: "柴犬の毛には何がある？",
+                choices: ["シングルコートのみ", "ダブルコート", "毛が生えない部位がある"],
+                answer: 1
+            },
+            {
+                q: "肛門腺絞りや爪切りは、どこでやってもらうのがおすすめ？",
+                choices: ["自分で全部やる", "シャンプー屋さん", "やらなくていい"],
+                answer: 1
+            }
+        ];
+
+        // ---- 2. 状態を持つ変数 ----
+        let currentIndex = 0;
+        // 今何問目か
+        let correctCount = 0;
+        // 何問正解したか
+
+        // このHTMLページから指定したID属性を持つものを一つ
+        const progressText = document.getElementById('progress-text');
+        const questionText = document.getElementById('question-text');
+        const choicesArea = document.getElementById('choices-area');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+
+        // ---- 3. 問題を画面に表示する ----
+        function showQuestion() {
+            const current = questions[currentIndex];
+            // 問題リストから取得してる
+
+            progressText.textContent = `第 ${currentIndex + 1} 問 / ${questions.length} 問`;
+            questionText.textContent = current.q;
+
+            // 選択肢ボタンを毎回作り直す
+            choicesArea.innerHTML = '';
+            // まず選択らんをリセット
+            current.choices.forEach((choiceLabel, index) => {
+                // このfor文がクイズの構成の中心
+                const btn = document.createElement('button');
+                // jsようのボタンをメモリ上で作る
+                btn.className = 'choice-btn';
+                // cssをつける
+                btn.textContent = choiceLabel;
+                // 一つ一つ文字を入れていく
+                btn.addEventListener('click', () => selectAnswer(index, btn));
+                // 選択肢が押された処理を毎回呼ぶ
+                choicesArea.appendChild(btn);
+                //選択欄にボタンを追加
+            });
+        }
+
+        // ---- 4. 選択肢が押された時の処理 ----
+        function selectAnswer(selectedIndex, btnEl) {
+            // 選ばれたindexとbtn自体が引数
+            const current = questions[currentIndex];
+            const isCorrect = selectedIndex === current.answer;
+            // TrueかFalseか判別させる
+
+            if (isCorrect) {
+                correctCount++;
+                btnEl.classList.add('correct');
+            } else {
+                btnEl.classList.add('wrong');
+            }
+
+            // 全ボタンを押せなくする(連打防止)
+            document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
+
+            // 少し間を置いてから次の問題へ
+            setTimeout(() => {
+                currentIndex++;
+                if (currentIndex < questions.length) {
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }, 700);
+        }
+
+        // ---- 5. 結果画面を表示する ----
+        function showResult() {
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
+
+            document.getElementById('score-text').textContent =
+                `${correctCount} / ${questions.length} 問正解`;
+
+            let message = '';
+            if (correctCount === questions.length) {
+                message = '柴犬マスター！すべて知り尽くしてるね';
+            } else if (correctCount >= 3) {
+                message = 'なかなかの柴犬通！もう少しで免許皆伝';
+            } else {
+                message = 'まだまだ柴犬修行が必要かも。ページを読み返してみよう';
+            }
+            document.getElementById('message-text').textContent = message;
+        }
+
+        // ---- 6. もう一度挑戦する ----
+        function restartQuiz() {
+            currentIndex = 0;
+            correctCount = 0;
+            resultScreen.style.display = 'none';
+            quizScreen.style.display = 'block';
+            showQuestion();
+        }
+
+        // ---- 最初の1問を表示してスタート ----
+        showQuestion();
+    </script>
+
+</body>
+
+</html>

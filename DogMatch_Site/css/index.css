@@ -175,6 +175,29 @@ h3 {
     color: #663735;
 }
 
+/* クイズボタン */
+.quiz-button.hidden {
+    display: none;
+}
+
+.quiz-button {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.quiz-button a {
+    padding: 20px 36px;
+    font-size: 1rem;
+    background-color: #c97b63;
+    /* サイトの和風カラーに合わせて調整して */
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
 @media (max-width:900px) {
 
     /* 前書き */
