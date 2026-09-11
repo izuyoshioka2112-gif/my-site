@@ -81,7 +81,7 @@ body {
 /* 結果画面 */
 #result-screen {
     display: none;
-    margin-top: 50px;
+    margin-top: 80px;
 }
 
 #result-screen .score {

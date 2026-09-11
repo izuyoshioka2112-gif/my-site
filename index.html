@@ -198,9 +198,9 @@
         });
 
         window.addEventListener('DOMContentLoaded', () => {
-            const visitedAbout = localStorage.getItem('visited_about')
-            const visitedCare = localStorage.getItem('visited_care')
-            const visitedLife = localStorage.getItem('visited_life')
+            const visitedAbout = sessionStorage.getItem('visited_about')
+            const visitedCare = sessionStorage.getItem('visited_care')
+            const visitedLife = sessionStorage.getItem('visited_life')
             if (visitedAbout && visitedCare && visitedLife) {
                 document.getElementById('quiz-button').classList.remove('hidden');
             }
