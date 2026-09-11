@@ -213,6 +213,8 @@
             let message = '';
             if (correctCount === questions.length) {
                 message = '柴犬マスター！すべて知り尽くしてるね\nさあ、柴犬を探そう!';
+            } else if (correctCount >= 5) {
+                message = 'もうあなたは柴犬を知っている！\nもっと深くまで知ってみよう!';
             } else if (correctCount >= 3) {
                 message = 'なかなかの柴犬通！もう少しで免許皆伝\n一度柴犬を探して、飼ってみてはいかが？';
             } else {
@@ -222,8 +224,8 @@
         }
         // リベンジ
         function restartQuiz() {
-            let currentIndex = 0; // 現在の問題数
-            let correctCount = 0; // 正解数
+            currentIndex = 0; // 現在の問題数
+            correctCount = 0; // 正解数
             quizScreen.style.display = 'block';
             resultScreen.style.display = 'none';
             showQuestion();
