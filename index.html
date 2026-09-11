@@ -33,6 +33,9 @@
                 </nav>
             </div>
         </div>
+        <div class="quiz-button hidden" id="quiz-button">
+            <a href="./DogMatch_Site/html/quiz.html">隠しクイズに挑戦</a>
+        </div>
     </header>
     <main>
         <div class="title">
@@ -86,6 +89,7 @@
                 </div>
             </div>
             <a class="link-button" href="./DogMatch_Site/html/care.html" id="Button">Care</a>
+
             <!-- 生活 -->
             <div class="recommended" id="life-first">
                 <a>
@@ -142,9 +146,9 @@
             });
         });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
         //→細かくなくて良い、これは結局何をしているjsなのか分かれば良い（これは、つけた名前をこのコード内から探して、cssで設定したpx分下げて配置しておいて、画面に映ったら元の位置に指定時間で戻す
         // ページ読み込み時:白から元に戻す
-
         // 画面のフェード　page-transition
         //1
         window.addEventListener('DOMContentLoaded', () => {
@@ -191,6 +195,15 @@
             setTimeout(() => {
                 paw.remove();
             }, 800);
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const visitedAbout = localStorage.getItem('visited_about')
+            const visitedCare = localStorage.getItem('visited_care')
+            const visitedLife = localStorage.getItem('visited_life')
+            if (visitedAbout && visitedCare && visitedLife) {
+                document.getElementById('quiz-button').classList.remove('hidden');
+            }
         });
     </script>
 </body>
