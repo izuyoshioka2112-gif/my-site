@@ -35,40 +35,30 @@
         </div>
     </header>
     <main>
-        <div class="title">
-            <p>全ページを踏破した証</p>
-            <h2 class="title-text">柴犬奥義クイズ</h2>
-            <p>About・Care・Life を歩き終えたあなたへ。<br>
-                柴犬のリアルを、どれだけ持ち帰れたか試してみよう。</p>
-        </div>
-        <div class="button">
-            <a href="">はじめる</a>
+        <div class="quiz">
+            <!-- クイズ自体 -->
+            <div id="quiz-screen">
+                <div class="progress" id="progress-text"></div>
+                <p id="question-text"></p>
+                <div class="choices" id="choices-area"></div>
+            </div>
+            <div id="result-screen">
+                <div class="progress">結果発表</div>
+                <div class="score" id="score-text"></div>
+                <p class="message" id="message-text"></p>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps?q=ペットショップ&output=embed" width="100%" height="400"
+                        style="border:0" loading="lazy">
+                        <!-- loadingはみせる位置を近くして読み込みを早くする -->
+                    </iframe>
+                </div>
+                <div class="retry-btn">
+                    <a onclick="restartQuiz()">もう一度挑戦する</a>
+                    <a href="../../index.html">ホームに戻る</a>
+                </div>
+            </div>
         </div>
     </main>
-    <footer>
-        <div class="site-menu">
-            <nav class="base-menu">
-                <ul>
-                    <li><a href="../../index.html">Home</a></li>
-                    <li><a href="./about.html">About</a></li>
-                    <li><a href="./care.html">Care</a></li>
-                    <li><a href="./life.html">Life</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="text-center">
-            <div class="base-tel">
-                <p>TEL 080-1111-1111</p>
-            </div>
-            <div class="base-time">
-                <p>
-                    電話対応のみ：9時〜20時
-                </p>
-            </div>
-            <p class="copyright"><small>&copy;2026 ShibaDog</small></p>
-            <p class="company">株式会社 柴犬をまるっと</p>
-        </div>
-    </footer>
     <script>
         //ここはメニューボタン（肉球）が押されたらメニューを出し、もう一度押されたら引っ込める役割
         const menuButton = document.querySelector('.menu-button');
@@ -76,18 +66,6 @@
         menuButton.addEventListener('click', function () {
             headerSiteMenu.classList.toggle('show');
         });
-
-        // fade-in
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('is-visible');
-            });
-        });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        //→細かくなくて良い、これは結局何をしているjsなのか分かれば良い（これは、つけた名前をこのコード内から探して、cssで設定したpx分下げて配置しておいて、画面に映ったら元の位置に指定時間で戻す
-        // ページ読み込み時:白から元に戻す
-        // 画面のフェード　page-transition
         //1
         window.addEventListener('DOMContentLoaded', () => {
             const overlay = document.getElementById('page-transition');
@@ -96,7 +74,6 @@
             });
         });
         // リンククリック時:白くしてから遷移
-        //2（役割はその場でページに飛ぶのをとめ、自分で設定した演習、時間を決めて移動させてる
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -113,8 +90,6 @@
                 }, 1000); // CSSのtransition時間と合わせる
             });
         });
-        //最初から白くしておく（html)→リンクリックで2が動き、3で1秒まつ→待ったらページの読み込み→そのページも初めから白いため、1が動き、フェードアウト
-
         // カーソル設定
         let lastTime = 0;
         document.addEventListener('mousemove', function (e) {
@@ -136,6 +111,125 @@
                 paw.remove();
             }, 800);
         });
+
+        // ここからクイズ
+        const questions = [
+            {
+                q: "柴犬の顔立ち、キツネ顔ともう一つは？",
+                choices: ["パンダ顔", "ねこ顔", "たぬき顔"],
+                answer: 2
+            },
+            {
+                q: "柴犬の毛は一本に何色入ってる？",
+                choices: ["1色のみ", "2色", "3色", "4色"],
+                answer: 2
+            },
+            {
+                q: "日本犬の中で柴犬はなんと言われている？",
+                choices: ["唯一の小型犬", "唯一の天然記念物", "唯一の家庭犬"],
+                answer: 0
+            },
+            {
+                q: "肛門腺絞りは必ずしも人間がやるべき？",
+                choices: ["はい", "いいえ"],
+                answer: 1
+            },
+            {
+                q: "柴犬の性格を説明するにはどれが最適？",
+                choices: ["温厚", "ズル賢い", "甘えん坊", "お利口さん"],
+                answer: 1
+            },
+            {
+                q: "柴犬が生まれてくる8割の毛色はどれ？",
+                choices: ["黒毛", "白毛", "胡麻柄", "赤毛"],
+                answer: 3
+            },
+            {
+                q: "他の犬と圧倒的に違う特徴とは？",
+                choices: ["ご飯の食べ方", "人の扱い方", "泳ぎ方"],
+                answer: 1
+            }
+        ];
+        // 変数
+        let currentIndex = 0; // 現在の問題数
+        let correctCount = 0; // 正解数
+        // このHTMLページから指定したID属性を持つものを一つずつ取得
+        const progressText = document.getElementById('progress-text');
+        const questionText = document.getElementById('question-text');
+        const choicesArea = document.getElementById('choices-area');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const resultText = document.getElementById('score-text');
+
+        // 問題表示（ここがメイン）
+        function showQuestion() {
+            const current = questions[currentIndex]; // 問題を取得
+            // テキストを表示
+            progressText.textContent = `第 ${currentIndex + 1} 問 / ${questions.length} 問`;
+            questionText.textContent = current.q;
+            // ここからボタンを作り、表示させる
+            choicesArea.innerHTML = ""; //選択ボタンを作成（js上で）
+            current.choices.forEach((choiceLabel, index) => {
+                // choiceLabelに選択肢が一つずつ入って、indexはjsが勝手に数を数えてくれる
+                const btn = document.createElement('button'); //ボタンをメモリ上に作成
+                btn.className = 'choice-btn';//クラス名をつけてcss使える〜
+                btn.textContent = 'choice-btn';
+                btn.textContent = choiceLabel;
+                btn.addEventListener('click', () => selectAnswer(index, btn));
+                choicesArea.appendChild(btn); // ボタン完成、選択肢の欄に追加
+            })
+        }
+        // 選択肢が押されたら↓
+        function selectAnswer(selectedIndex, btnEl) {
+            //選ばれたindexとbtn自体が引数
+            const current = questions[currentIndex]; // 問題を取得
+            const isCorrect = selectedIndex === current.answer;
+            if (isCorrect) {
+                correctCount++;
+                btnEl.classList.add('correct'); //正解と不正解でボタンの色を変える（cssをくっつけるものを変える)
+            } else {
+                btnEl.classList.add('wrong');
+                const allButton = document.querySelectorAll('.choice-btn'); //出力した選択肢を全て持ってくる
+                allButton[current.answer].classList.add('answer')
+            }
+            // 一度押したら押せなくする
+            document.querySelectorAll('.choice-btn').forEach(b => b.disabled = true);
+            // 時間を置いてから次の問題へ
+            setTimeout(() => {
+                currentIndex++;
+                if (currentIndex < questions.length) {
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }, 1000 //1秒まつ
+            );
+        }
+        // 結果画面
+        function showResult() {
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
+            resultText.textContent = `${correctCount} / ${questions.length} 問正解`;
+            let message = '';
+            if (correctCount === questions.length) {
+                message = '柴犬マスター！すべて知り尽くしてるね\nさあ、柴犬を探そう!';
+            } else if (correctCount >= 3) {
+                message = 'なかなかの柴犬通！もう少しで免許皆伝\n一度柴犬を探して、飼ってみてはいかが？';
+            } else {
+                message = 'まだまだ柴犬修行が必要かも。ページを読み返してみよう\nまた、柴犬を知るには飼うことが早い。さあ、君も柴犬を探してみよう!';
+            }
+            document.getElementById('message-text').textContent = message; //メッセージを表示(jsからの文字表示を理解してきたー！😄)
+        }
+        // リベンジ
+        function restartQuiz() {
+            let currentIndex = 0; // 現在の問題数
+            let correctCount = 0; // 正解数
+            quizScreen.style.display = 'block';
+            resultScreen.style.display = 'none';
+            showQuestion();
+        }
+        // 早速スタート！
+        showQuestion();
     </script>
 </body>
 

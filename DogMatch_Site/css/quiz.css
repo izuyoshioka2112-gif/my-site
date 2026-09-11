@@ -1,17 +1,121 @@
+:root {
+    --terracotta: #c97b63;
+    --terracotta-deep: #a85c46;
+    /* テラコッタ？？ */
+}
+
 body {
-    background-color: #ede0ce;
-}
-
-.title p {
-    font-family: "IBM Plex Sans JP", sans-serif;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 2;
-    color: #532626;
-}
-
-.title h2 {
-    font-size: 35px;
+    margin: 0;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b332a;
+    background-color: #f3e9d2;
     padding: 20px;
-    color: #451a1a;
+    overflow-x: hidden;
+    /*はみ出しを消す*/
+}
+
+.progress {
+    font-family: "Shippori Mincho", serif;
+    color: var(--terracotta-deep);
+    font-size: 20px;
+}
+
+#question-text {
+    font-family: "Shippori Mincho", serif;
+    line-height: 2;
+    font-size: 30px;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    /*縦並び*/
+    gap: 12px;
+    /*間隔*/
+}
+
+.choice-btn {
+    padding: 15px;
+    font-size: 20px;
+    background-color: #fff;
+    border: 1px solid var(--terracotta);
+    border-radius: 30px;
+    transition: background-color 0.2s, border-color 0.2s;
+    /* 今回の鍵 */
+}
+
+.choice-btn.answer {
+    color: #698c38;
+}
+
+.choice-btn:hover {
+    background-color: var(--terracotta);
+    color: #fff;
+}
+
+.choice-btn.correct {
+    background-color: #7a8f5c;
+    border-color: #7a8f5c;
+    color: #fff;
+}
+
+.choice-btn.wrong {
+    background-color: #c64747;
+    border-color: #c64747;
+    color: #fff;
+}
+
+.choice-btn:disabled {
+    pointer-events: none;
+    /* マウス機能を全て無効化↑ */
+}
+
+.message {
+    white-space: pre-wrap;
+    /* jsの文を改行できるように＼n */
+}
+
+/* 結果画面 */
+#result-screen {
+    display: none;
+    margin-top: 50px;
+}
+
+#result-screen .score {
+    margin-top: 50px;
+    font-family: "Shippori Mincho", serif;
+    font-size: 30px;
+    margin: 10px;
+}
+
+#result-screen .message {
+    font-size: 20px;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+.map {
+    margin: 30px auto;
+    display: flex;
+}
+
+.retry-btn a {
+    font-size: 15px;
+    font-family: "Shippori Mincho", serif;
+    font-size: 20px;
+    background-color: var(--terracotta-deep);
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 50px 10px 0;
+}
+
+@media (max-width:900px) {
+    #question-text {
+        line-height: 2;
+        font-size: 20px;
+    }
 }
